@@ -1,1 +1,2 @@
 Dockerfiles/**/*.jar
+Dockerfiles/client-angular/app
