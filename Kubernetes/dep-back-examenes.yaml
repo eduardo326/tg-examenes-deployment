@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kubernetes.io/change-cause: "Despliegue de componente ms-examenes"
+  name: deployment-ms-examenes
+  labels:
+    app: dep-ms-examenes
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tg-ms-examenes
+  template:
+    metadata:
+      labels:
+        app: tg-ms-examenes
+    spec:
+      containers:
+      - name: ms-examenes
+        image: gardinsoft/tg-examenes:v1.0.1

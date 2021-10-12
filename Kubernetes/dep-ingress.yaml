@@ -1,0 +1,45 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-test
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: tg-eureka.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: eureka
+            port: 
+              number: 8761
+  - host: api.tg-examenes.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: campus-ms-zuul
+            port: 
+              number: 8090
+  - host: tg-examenes.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: campus-front
+            port: 
+              number: 8080
+      - path: /*
+        pathType: Prefix
+        backend:
+          service:
+            name: campus-front
+            port: 
+              number: 8080

@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kubernetes.io/change-cause: "Change cause port to 110"
+  name: deployment-front
+  labels:
+    app: front
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: front
+  template:
+    metadata:
+      labels:
+        app: front
+    spec:
+      containers:
+      - name: front
+        image: gardinsoft/tg-frontend:v1.0.0
+        
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: campus-front
+  labels:
+    app: ser-front
+spec:
+  type: ClusterIP
+  selector:
+    app: front
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 80

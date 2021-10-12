@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kubernetes.io/change-cause: "Despliegue de componente ms-cursos"
+  name: deployment-ms-cursos
+  labels:
+    app: dep-ms-cursos
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tg-ms-cursos
+  template:
+    metadata:
+      labels:
+        app: tg-ms-cursos
+    spec:
+      containers:
+      - name: ms-cursos
+        image: gardinsoft/tg-cursos:v1.0.1

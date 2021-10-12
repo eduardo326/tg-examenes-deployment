@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kubernetes.io/change-cause: "Despliegue de componente ms-usuarios"
+  name: deployment-ms-usuarios
+  labels:
+    app: dep-ms-usuarios
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tg-ms-usuarios
+  template:
+    metadata:
+      labels:
+        app: tg-ms-usuarios
+    spec:
+      containers:
+      - name: ms-usuarios
+        image: gardinsoft/tg-usuarios:v1.0.1

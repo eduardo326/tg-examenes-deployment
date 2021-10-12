@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kubernetes.io/change-cause: "Despliegue de componente ms-zuul"
+  name: deployment-ms-zuul
+  labels:
+    app: dep-ms-zuul
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tg-ms-zuul
+  template:
+    metadata:
+      labels:
+        app: tg-ms-zuul
+    spec:
+      containers:
+      - name: tg-ms-zuul
+        image: gardinsoft/tg-zuul:v1.0.2
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: campus-ms-zuul
+  labels:
+    app: ser-ms-zuul
+spec:
+  type: ClusterIP
+  selector:
+    app: tg-ms-zuul
+  ports:
+    - protocol: TCP
+      port: 8090
+      targetPort: 8090
