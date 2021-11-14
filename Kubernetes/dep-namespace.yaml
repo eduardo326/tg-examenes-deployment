@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: prod-back
+  labels:
+    name: prod-back
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: prod-front
+  labels:
+    name: prod-front
