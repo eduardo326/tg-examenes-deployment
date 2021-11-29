@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: tg-config-server
-        image: gardinsoft/tg-sconfig:v1.0.1
+        image: gardinsoft/tg-sconfig:v1.0.0
 
 ---
 

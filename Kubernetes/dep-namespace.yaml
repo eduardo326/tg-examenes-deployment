@@ -6,8 +6,73 @@ metadata:
     name: prod-back
 ---
 apiVersion: v1
+kind: LimitRange
+metadata:
+  name: mem-cpu-limit-range
+  namespace: prod-back
+spec:
+  limits:
+  - max:
+      memory: 600M
+      cpu: 1
+    min:
+      memory: 100M
+      cpu: 0.1
+    type: Container
+  - default:
+      memory: 300Mi
+      cpu: 0.5
+    defaultRequest:
+      memory: 100Mi
+      cpu: 0.1
+    type: Container
+---
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: res-quota
+  namespace: prod-back
+spec:
+  hard:
+    requests.cpu: "2"
+    requests.memory: 2Gi
+
+---
+apiVersion: v1
 kind: Namespace
 metadata:
   name: prod-front
   labels:
     name: prod-front
+---
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: mem-cpu-limit-range
+  namespace: prod-front
+spec:
+  limits:
+  - max:
+      memory: 600M
+      cpu: 1
+    min:
+      memory: 100M
+      cpu: 0.1
+    type: Container
+  - default:
+      memory: 300Mi
+      cpu: 0.5
+    defaultRequest:
+      memory: 100Mi
+      cpu: 0.1
+    type: Container
+---
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: res-quota
+  namespace: prod-front
+spec:
+  hard:
+    requests.cpu: "1.5"
+    requests.memory: 2Gi

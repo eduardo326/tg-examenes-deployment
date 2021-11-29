@@ -1,1 +1,18 @@
-Notas
+Crear namespace para el back y front
+	- Aplicar limitRange para limitar a nivel de namespace a los pods del tipo BestEffort
+	- Aplicar ResourceQuota para limitar a nivel de namespace a los pods
+Agregar limites de RAM y CPU a los pods
+	- Como saver cuanto se le debe asignar a una aplicacion?
+	- Instalar Metrix server para recoger metricas de kubernetes
+	- Crear pods del tipo Qos Class of Guaranteed y Burstable, no crear pods del tipo BestEffort
+
+
+
+1- Se crea namaspace para separar los componentes del back y del front.
+2- Se asignan limitRange y ResourceQuota a los namespace.
+3- Se agregan los limites de memoria y ram a los pods.
+
+
+
+
+***** Continuar con el despliegue de los namespace y apuntar todos los deploymente al namaspace que le corresponde.

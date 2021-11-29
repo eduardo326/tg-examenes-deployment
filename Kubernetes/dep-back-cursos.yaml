@@ -6,6 +6,7 @@ metadata:
   name: deployment-ms-cursos
   labels:
     app: dep-ms-cursos
+  namespace: prod-back
 spec:
   replicas: 1
   selector:
@@ -19,3 +20,10 @@ spec:
       containers:
       - name: ms-cursos
         image: gardinsoft/tg-cursos:v1.0.1
+        resources:
+          limits:
+            memory: "300Mi"
+            cpu: "0.5"
+          requests:
+            memory: "100Mi"
+            cpu: "0.1"
