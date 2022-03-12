@@ -8,7 +8,7 @@ metadata:
 apiVersion: v1
 kind: LimitRange
 metadata:
-  name: mem-cpu-limit-range
+  name: mem-cpu-limit-range-back
   namespace: prod-back
 spec:
   limits:
@@ -18,8 +18,7 @@ spec:
     min:
       memory: 100M
       cpu: 0.1
-    type: Container
-  - default:
+    default:
       memory: 300Mi
       cpu: 0.5
     defaultRequest:
@@ -30,12 +29,13 @@ spec:
 apiVersion: v1
 kind: ResourceQuota
 metadata:
-  name: res-quota
+  name: res-quota-back
   namespace: prod-back
 spec:
   hard:
-    requests.cpu: "2"
-    requests.memory: 2Gi
+    requests.cpu: "3"
+    requests.memory: 4Gi
+
 
 ---
 apiVersion: v1
@@ -48,7 +48,7 @@ metadata:
 apiVersion: v1
 kind: LimitRange
 metadata:
-  name: mem-cpu-limit-range
+  name: mem-cpu-limit-range-front
   namespace: prod-front
 spec:
   limits:
@@ -58,8 +58,7 @@ spec:
     min:
       memory: 100M
       cpu: 0.1
-    type: Container
-  - default:
+    default:
       memory: 300Mi
       cpu: 0.5
     defaultRequest:
@@ -70,7 +69,7 @@ spec:
 apiVersion: v1
 kind: ResourceQuota
 metadata:
-  name: res-quota
+  name: res-quota-front
   namespace: prod-front
 spec:
   hard:

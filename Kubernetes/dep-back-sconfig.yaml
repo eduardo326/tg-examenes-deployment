@@ -4,10 +4,11 @@ metadata:
   annotations:
     kubernetes.io/change-cause: "Despliegue de componente Config Server"
   name: deployment-sconfig
+  namespace: prod-back
   labels:
     app: dep-sconfig
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: tg-sconfig
@@ -18,7 +19,27 @@ spec:
     spec:
       containers:
       - name: tg-config-server
-        image: gardinsoft/tg-sconfig:v1.0.0
+        image: gardinsoft/tg-sconfig:v1.0.1
+        env:
+          - name: spring.cloud.config.server.git.password
+            value: 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
+        resources:
+          limits:
+            memory: "250Mi"
+            cpu: "0.3"
+          requests:
+            memory: "150Mi"
+            cpu: "0.1"
+        readinessProbe:
+          tcpSocket:
+            port: 8888
+          initialDelaySeconds: 60
+          periodSeconds: 30
+        livenessProbe:
+          tcpSocket:
+            port: 8888
+          initialDelaySeconds: 60
+          periodSeconds: 30
 
 ---
 
@@ -26,10 +47,11 @@ apiVersion: v1
 kind: Service
 metadata:
   name: tg-config-server
+  namespace: prod-back
   labels:
     app: ser-sconfig
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app: tg-sconfig
   ports:
