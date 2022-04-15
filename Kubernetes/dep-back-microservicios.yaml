@@ -1,0 +1,189 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kubernetes.io/change-cause: "Despliegue de componente ms-usuarios en su version 1.0.2"
+  name: deployment-ms-usuarios
+  namespace: produccion
+  labels:
+    app: dep-ms-usuarios
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: tg-ms-usuarios
+  template:
+    metadata:
+      labels:
+        app: tg-ms-usuarios
+    spec:
+      containers:
+      - name: ms-usuarios
+        image: gardinsoft/tg-usuarios:v1.0.2
+        resources:
+          limits:
+            memory: "300Mi"
+            cpu: "0.3"
+          requests:
+            memory: "100Mi"
+            cpu: "0.1"
+        readinessProbe:
+          httpGet:
+            path: /pagina
+            port: 8004
+            httpHeaders:
+            - name: Custom-Header
+              value: Awesome
+          initialDelaySeconds: 10
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /pagina
+            port: 8004
+            httpHeaders:
+            - name: Custom-Header
+              value: Awesome
+          initialDelaySeconds: 180
+          periodSeconds: 30
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kubernetes.io/change-cause: "Despliegue de componente ms-examenes en su version 1.0.2"
+  name: deployment-ms-examenes
+  namespace: produccion
+  labels:
+    app: dep-ms-examenes
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: tg-ms-examenes
+  template:
+    metadata:
+      labels:
+        app: tg-ms-examenes
+    spec:
+      containers:
+      - name: ms-examenes
+        image: gardinsoft/tg-examenes:v1.0.2
+        resources:
+          limits:
+            memory: "300Mi"
+            cpu: "0.3"
+          requests:
+            memory: "100Mi"
+            cpu: "0.1"
+        readinessProbe:
+          httpGet:
+            path: /pagina
+            port: 8002
+            httpHeaders:
+            - name: Custom-Header
+              value: Awesome
+          initialDelaySeconds: 10
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /pagina
+            port: 8002
+            httpHeaders:
+            - name: Custom-Header
+              value: Awesome
+          initialDelaySeconds: 180
+          periodSeconds: 30
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kubernetes.io/change-cause: "Despliegue de componente ms-cursos en su version 1.0.2"
+  name: deployment-ms-cursos
+  namespace: produccion
+  labels:
+    app: dep-ms-cursos
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: tg-ms-cursos
+  template:
+    metadata:
+      labels:
+        app: tg-ms-cursos
+    spec:
+      containers:
+      - name: ms-cursos
+        image: gardinsoft/tg-cursos:v1.0.2
+        resources:
+          limits:
+            memory: "300Mi"
+            cpu: "0.3"
+          requests:
+            memory: "100Mi"
+            cpu: "0.1"
+        readinessProbe:
+          httpGet:
+            path: /pagina
+            port: 8001
+            httpHeaders:
+            - name: Custom-Header
+              value: Awesome
+          initialDelaySeconds: 10
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /pagina
+            port: 8001
+            httpHeaders:
+            - name: Custom-Header
+              value: Awesome
+          initialDelaySeconds: 180
+          periodSeconds: 30
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kubernetes.io/change-cause: "Despliegue de componente ms-respuestas en su version 1.0.2"
+  name: deployment-ms-respuestas
+  namespace: produccion
+  labels:
+    app: dep-ms-respuestas
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: tg-ms-respuestas
+  template:
+    metadata:
+      labels:
+        app: tg-ms-respuestas
+    spec:
+      containers:
+      - name: ms-respuestas
+        image: gardinsoft/tg-respuestas:v1.0.2
+        resources:
+          limits:
+            memory: "300Mi"
+            cpu: "0.3"
+          requests:
+            memory: "100Mi"
+            cpu: "0.1"
+        readinessProbe:
+          tcpSocket:
+            port: 8003
+          initialDelaySeconds: 10
+          periodSeconds: 10
+        livenessProbe:
+          tcpSocket:
+            port: 8003
+          initialDelaySeconds: 180
+          periodSeconds: 30

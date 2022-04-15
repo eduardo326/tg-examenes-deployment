@@ -2,13 +2,13 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    kubernetes.io/change-cause: "Despliegue de componente ms-zuul"
+    kubernetes.io/change-cause: "Despliegue de componente ms-zuul en su version 1.0.2"
   name: deployment-ms-zuul
-  namespace: prod-back
+  namespace: produccion
   labels:
     app: dep-ms-zuul
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: tg-ms-zuul
@@ -20,6 +20,16 @@ spec:
       containers:
       - name: tg-ms-zuul
         image: gardinsoft/tg-zuul:v1.0.2
+        readinessProbe:
+          tcpSocket:
+            port: 8090
+          initialDelaySeconds: 10
+          periodSeconds: 10
+        livenessProbe:
+          tcpSocket:
+            port: 8090
+          initialDelaySeconds: 180
+          periodSeconds: 30
 
 ---
 
@@ -27,7 +37,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: campus-ms-zuul
-  namespace: prod-back
+  namespace: produccion
   labels:
     app: ser-ms-zuul
 spec:

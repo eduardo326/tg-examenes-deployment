@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: eureka-cm
-  namespace: prod-back
+  namespace: produccion
 data:
   # if you want to deploy n instances of eureka cluster,
   # you should set eureka_service_address: http://eureka-0.eureka:8761/eureka,...,http://eureka-(n-1).eureka:8761/eureka
@@ -12,7 +12,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: eureka
-  namespace: prod-back
+  namespace: produccion
   labels:
     app: eureka
 spec:
@@ -29,7 +29,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: eureka
-  namespace: prod-back
+  namespace: produccion
 spec:
   serviceName: 'eureka'
   # n instances
@@ -62,12 +62,12 @@ spec:
               path: /
               port: 8761
             initialDelaySeconds: 30
-            periodSeconds: 10
+            periodSeconds: 30
             timeoutSeconds: 5
           readinessProbe:
             httpGet:
               path: /
               port: 8761
             initialDelaySeconds: 30
-            periodSeconds: 10
+            periodSeconds: 30
             timeoutSeconds: 5
