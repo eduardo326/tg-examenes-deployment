@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    kubernetes.io/change-cause: "Despliegue de componente ms-zuul en su version 1.0.2"
+    kubernetes.io/change-cause: "Despliegue de componente ms-zuul en su version 1.0.1"
   name: deployment-ms-zuul
   namespace: produccion
   labels:
@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: tg-ms-zuul
-        image: gardinsoft/tg-zuul:v1.0.2
+        image: gardinsoft/tg-zuul:v1.0.1
         readinessProbe:
           tcpSocket:
             port: 8090

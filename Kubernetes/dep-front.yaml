@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    kubernetes.io/change-cause: "Despliegue de front en la version 1.0.2"
+    kubernetes.io/change-cause: "Despliegue de front en la version 1.0.1"
   name: deployment-front
   namespace: produccion
   labels:
@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: front
-        image: gardinsoft/tg-frontend:v1.0.2
+        image: gardinsoft/tg-frontend:v1.0.1
         resources:
           limits:
             memory: "300Mi"
