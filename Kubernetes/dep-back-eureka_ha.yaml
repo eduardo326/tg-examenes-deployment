@@ -44,7 +44,7 @@ spec:
     spec:
       containers:
         - name: eureka
-          image: gardinsoft/tg-eureka:v1.0.1
+          image: gardinsoft/tg-eureka:v1.0.0
           ports:
             - containerPort: 8761
           env:

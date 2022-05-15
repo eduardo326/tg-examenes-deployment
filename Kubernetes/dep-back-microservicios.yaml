@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    kubernetes.io/change-cause: "Despliegue de componente ms-usuarios en su version 1.0.2"
+    kubernetes.io/change-cause: "Despliegue de componente ms-usuarios en su version 1.0.1"
   name: deployment-ms-usuarios
   namespace: produccion
   labels:
@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: ms-usuarios
-        image: gardinsoft/tg-usuarios:v1.0.2
+        image: gardinsoft/tg-usuarios:v1.0.1
         resources:
           limits:
             memory: "300Mi"
@@ -52,7 +52,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    kubernetes.io/change-cause: "Despliegue de componente ms-examenes en su version 1.0.2"
+    kubernetes.io/change-cause: "Despliegue de componente ms-examenes en su version 1.0.1"
   name: deployment-ms-examenes
   namespace: produccion
   labels:
@@ -69,7 +69,7 @@ spec:
     spec:
       containers:
       - name: ms-examenes
-        image: gardinsoft/tg-examenes:v1.0.2
+        image: gardinsoft/tg-examenes:v1.0.1
         resources:
           limits:
             memory: "300Mi"
@@ -102,7 +102,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    kubernetes.io/change-cause: "Despliegue de componente ms-cursos en su version 1.0.2"
+    kubernetes.io/change-cause: "Despliegue de componente ms-cursos en su version 1.0.1"
   name: deployment-ms-cursos
   namespace: produccion
   labels:
@@ -119,7 +119,7 @@ spec:
     spec:
       containers:
       - name: ms-cursos
-        image: gardinsoft/tg-cursos:v1.0.2
+        image: gardinsoft/tg-cursos:v1.0.1
         resources:
           limits:
             memory: "300Mi"
@@ -152,7 +152,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    kubernetes.io/change-cause: "Despliegue de componente ms-respuestas en su version 1.0.2"
+    kubernetes.io/change-cause: "Despliegue de componente ms-respuestas en su version 1.0.1"
   name: deployment-ms-respuestas
   namespace: produccion
   labels:
@@ -169,7 +169,7 @@ spec:
     spec:
       containers:
       - name: ms-respuestas
-        image: gardinsoft/tg-respuestas:v1.0.2
+        image: gardinsoft/tg-respuestas:v1.0.1
         resources:
           limits:
             memory: "300Mi"

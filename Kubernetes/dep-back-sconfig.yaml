@@ -21,6 +21,10 @@ spec:
       - name: tg-config-server
         image: gardinsoft/tg-sconfig:v1.0.1
         env:
+          - name: spring.cloud.config.server.git.uri
+            value: https://github.com/eduardo326/tg-examenes-sconfig
+          - name: spring.cloud.config.server.git.username
+            value: eduardo_326@hotmail.es
           - name: spring.cloud.config.server.git.password
             value: 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
         resources:
