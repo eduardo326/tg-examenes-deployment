@@ -35,4 +35,3 @@ spec:
   hard:
     requests.cpu: "5"
     requests.memory: 7Gi
-
